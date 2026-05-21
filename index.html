@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sibo Got a Glock</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <section id="menu" class="screen active">
+      <div class="card">
+        <p class="tiny">a totally legal original fake-3D browser game</p>
+        <h1>SIBO<br>GOT A<br>GLOCK</h1>
+        <p class="muted">
+          Pixel raycaster prototype. Rusty maze, zombie enemies, hearts, ammo, and Sibo weapon art.
+        </p>
+        <div class="buttons">
+          <button id="playBtn">Play</button>
+          <button id="howBtn">How To Play</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="screen">
+      <div class="card">
+        <h2>How To Play</h2>
+        <p><b>WASD / arrows</b> move around.</p>
+        <p><b>Mouse</b> turns. <b>Click</b> shoots. You can also use <b>Q/E</b> to turn.</p>
+        <p>Defeat zombies and reach the glowing exit tile.</p>
+        <p class="muted">Press <b>M</b> in-game for the hidden mod menu.</p>
+        <button class="backBtn">Back</button>
+      </div>
+    </section>
+
+    <section id="game" class="screen gameScreen">
+      <canvas id="view" width="426" height="240"></canvas>
+
+      <div id="hud">
+        <div id="hearts"></div>
+        <div class="hudPill">Ammo: <b id="ammoText">0</b></div>
+        <div class="hudPill">Zombies: <b id="enemyText">0</b></div>
+      </div>
+
+      <div id="message"></div>
+
+      <div id="weaponLayer">
+        <img id="handImg" alt="" />
+        <img id="gunImg" alt="" />
+      </div>
+
+      <div id="modMenu">
+        <h2>Hidden Mod Menu</h2>
+        <label><input id="godToggle" type="checkbox"> God mode</label>
+        <label><input id="ammoToggle" type="checkbox"> Infinite ammo</label>
+        <label><input id="speedToggle" type="checkbox"> Sibo speed</label>
+        <label><input id="fogToggle" type="checkbox" checked> Dark fog</label>
+        <button id="closeModBtn">Close</button>
+      </div>
+
+      <div class="mobileControls">
+        <button id="leftBtn">⟲</button>
+        <button id="forwardBtn">▲</button>
+        <button id="rightBtn">⟳</button>
+        <button id="shootBtn">SHOOT</button>
+      </div>
+
+      <button id="exitBtn">Exit</button>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
