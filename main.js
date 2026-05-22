@@ -1,5 +1,5 @@
 /*
-  Sibo Got a Glock - v1
+  Sibo Got a Glock - v1.1 visible-wall/cache fix
   Fake-3D pixel raycaster shooter.
   Uses original uploaded assets from /assets/.
 */
@@ -100,7 +100,7 @@ function newGame() {
     player: {
       x: spawn.x,
       y: spawn.y,
-      angle: 0,
+      angle: 0.35,
       hp: 6,
       ammo: 36,
       cooldown: 0,
@@ -358,25 +358,22 @@ function drawWalls() {
     const wallHeight = Math.min(canvas.height * 2, canvas.height / Math.max(corrected, 0.05));
     const y = (canvas.height - wallHeight) / 2;
 
-    const shade = clamp(1 - corrected / 10, 0.18, 1);
-    const grey = Math.floor(210 * shade);
-
-    // Base wall color so walls never become invisible.
+    // Guaranteed visible wall base.
+    const shade = clamp(1 - corrected / 10, 0.20, 1);
+    const grey = Math.floor(230 * shade);
+    ctx.globalAlpha = 1;
     ctx.fillStyle = `rgb(${grey}, ${grey}, ${grey})`;
     ctx.fillRect(x, y, 1, wallHeight);
 
-    // Optional rusty texture overlay.
+    // Rust texture overlay. If a texture is dark/transparent, the grey wall still shows.
     const tex = [img.wall1, img.wall2, img.wall3, img.wall4][hitInfo.wallType % 4];
-
     if (tex && tex.complete && tex.naturalWidth > 0) {
       const tx = Math.floor(hitInfo.textureX * tex.width);
-
-      ctx.globalAlpha = 0.55;
+      ctx.globalAlpha = 0.65;
       ctx.drawImage(tex, tx, 0, 1, tex.height, x, y, 1, wallHeight);
       ctx.globalAlpha = 1;
     }
 
-    // Fog overlay.
     if (game.mod.fog) {
       ctx.fillStyle = `rgba(0, 0, 0, ${1 - shade})`;
       ctx.fillRect(x, y, 1, wallHeight);
